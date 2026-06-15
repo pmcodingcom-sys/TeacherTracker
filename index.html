@@ -97,7 +97,7 @@
         }
     </style>
 </head>
-<body class="h-full text-slate-700 flex flex-col md:flex-row antialiased overflow-hidden">
+<body class="min-h-full text-slate-700 flex flex-col md:flex-row antialiased overflow-y-auto md:overflow-hidden">
 
     <!-- ========================================== -->
     <!-- OVERLAYS & DIALOGS                         -->
@@ -283,7 +283,7 @@
     <!-- ========================================== -->
     <!-- MAIN WORKSPACE CONTENT CONTAINER           -->
     <!-- ========================================== -->
-    <main class="flex-1 flex flex-col h-full overflow-hidden min-w-0">
+    <main class="flex-1 flex flex-col min-h-screen md:h-full md:overflow-hidden min-w-0">
         
         <!-- MOBILE TOP BAR -->
         <header id="mobile-header" class="flex md:hidden items-center justify-between px-4 py-3.5 bg-slate-900 text-white shrink-0 shadow-md">
@@ -791,7 +791,7 @@
                 <!-- ASSIGNMENTS CARDS / LIST -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Left Assignment List -->
-                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 h-[550px] flex flex-col">
+                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 h-[250px] md:h-[550px] flex flex-col">
                         <div class="mb-4 relative">
                             <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3 text-slate-400 pointer-events-none"></i>
                             <input type="text" id="assignment-search" oninput="searchAssignments(this.value)" placeholder="ค้นหางานหรือวิชา..." class="w-full text-xs pl-9 pr-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:outline-none">
@@ -803,7 +803,7 @@
                     </div>
 
                     <!-- Right Student Submissions Grid -->
-                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 md:col-span-2 h-[550px] flex flex-col">
+                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 md:col-span-2 h-[400px] md:h-[550px] flex flex-col">
                         <div id="tracking-detail-header" class="border-b border-slate-100 pb-4 mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div>
                                 <span id="td-subject" class="text-[10px] bg-primary-100 text-primary-700 px-2 py-0.5 rounded-md font-semibold inline-block mb-1">โปรดเลือกงาน</span>
@@ -853,7 +853,7 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <!-- Left Classroom List -->
-                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 h-[500px] overflow-y-auto space-y-2">
+                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 h-[250px] md:h-[500px] overflow-y-auto space-y-2">
                         <h3 class="text-xs font-bold text-slate-500 mb-3 uppercase tracking-wider">ห้องเรียนทั้งหมดของคุณ</h3>
                         <div id="classroom-list-container" class="space-y-2">
                             <!-- Dynamic Classroom Items -->
@@ -861,7 +861,7 @@
                     </div>
 
                     <!-- Right Roster List -->
-                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 lg:col-span-2 h-[500px] flex flex-col">
+                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 lg:col-span-2 h-[400px] md:h-[500px] flex flex-col">
                         <div id="classroom-roster-header" class="border-b border-slate-100 pb-4 mb-4 flex items-center justify-between hidden">
                             <div>
                                 <h3 class="text-sm font-bold text-slate-800">รายชื่อนักเรียนห้อง <span id="roster-class-name"></span></h3>
