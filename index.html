@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" class="h-full bg-slate-50">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Task Tracker - ระบบติดตามงานนักเรียนสำหรับครู</title>
+    
+    <!-- PWA & Add to Home Screen -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="TeacherTracker">
+
+    <!-- OneSignal Web Push SDK CDN -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     
     <!-- Google Fonts: Kanit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1058,6 +1069,12 @@
         // ==========================================
         const SUPABASE_URL = "https://nijbkxwrrcdvhkcwjozp.supabase.co"; // ป้อน URL เช่น https://xxxxxx.supabase.co
         const SUPABASE_KEY = "sb_publishable_CWUWuMhtjt4g_Fm6GjrZDA_uZOL9XHR";    // ป้อน Anon Key ของคุณ
+
+        // ==========================================
+        // 🔔 กำหนดข้อมูล OneSignal Web Push App ID
+        // (สมัครใช้งาน OneSignal Web Push ฟรี นำ App ID มาระบุเพื่อระบบแจ้งเตือนแบบปิดเว็บได้)
+        // ==========================================
+        const ONESIGNAL_APP_ID = "7e999c4d-6f2a-478e-90c5-483e4a5d8833"; // ป้อน OneSignal App ID ของคุณ เช่น 8f5b8214-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
         // In-memory application state
         const state = {
@@ -3495,9 +3512,31 @@
         }
 
         function requestPushPermission() {
-            if ("Notification" in window) {
-                if (Notification.permission !== "granted" && Notification.permission !== "denied") {
-                    Notification.requestPermission();
+            // Check if OneSignal is configured correctly
+            if (typeof ONESIGNAL_APP_ID !== 'undefined' && ONESIGNAL_APP_ID && ONESIGNAL_APP_ID !== "YOUR_ONESIGNAL_APP_ID") {
+                try {
+                    window.OneSignalDeferred = window.OneSignalDeferred || [];
+                    window.OneSignalDeferred.push(async function(OneSignal) {
+                        try {
+                            await OneSignal.init({
+                                appId: ONESIGNAL_APP_ID,
+                                allowLocalhostAsSecureOrigin: true,
+                                serviceWorkerParam: { scope: "/" },
+                                serviceWorkerPath: "OneSignalSDKWorker.js",
+                            });
+                        } catch (initErr) {
+                            console.warn("OneSignal Web Push init failed (check App ID platforms config):", initErr.message);
+                        }
+                    });
+                } catch (e) {
+                    console.error("OneSignal push setup error:", e);
+                }
+            } else {
+                // Fallback to native browser notifications
+                if ("Notification" in window) {
+                    if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+                        Notification.requestPermission();
+                    }
                 }
             }
         }
