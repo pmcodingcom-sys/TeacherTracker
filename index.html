@@ -95,6 +95,19 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
+
+        /* Force hide desktop sidebar on mobile, regardless of Tailwind runtime class parsing */
+        @media (max-width: 767px) {
+            #desktop-sidebar {
+                display: none !important;
+            }
+            /* Prevent body from horizontal overflow zooming on mobile */
+            body {
+                overflow-x: hidden !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+            }
+        }
     </style>
 </head>
 <body class="min-h-full text-slate-700 flex flex-col md:flex-row antialiased overflow-y-auto md:overflow-hidden">
@@ -861,13 +874,13 @@
                     </div>
 
                     <!-- Right Roster List -->
-                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 lg:col-span-2 h-[400px] md:h-[500px] flex flex-col">
-                        <div id="classroom-roster-header" class="border-b border-slate-100 pb-4 mb-4 flex items-center justify-between hidden">
+                     <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 lg:col-span-2 h-[400px] md:h-[500px] flex flex-col">
+                         <div id="classroom-roster-header" class="border-b border-slate-100 pb-4 mb-4 flex flex-col xl:flex-row xl:items-center justify-between gap-4 hidden">
                             <div>
                                 <h3 class="text-sm font-bold text-slate-800">รายชื่อนักเรียนห้อง <span id="roster-class-name"></span></h3>
                                 <p class="text-xs text-slate-400">แก้ไขรายชื่อหรือลบนักเรียนออกจากระบบ</p>
                             </div>
-                            <div class="flex items-center gap-2">
+                            <div class="flex flex-wrap items-center gap-2">
                                 <button onclick="downloadExcelTemplate()" class="px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-600 hover:text-amber-700 rounded-lg text-xs font-bold border border-amber-200 transition flex items-center gap-1">
                                     <i data-lucide="download" class="w-3.5 h-3.5"></i> ดาวน์โหลดเทมเพลต
                                 </button>
@@ -891,7 +904,7 @@
 
                         <!-- Roster students details table -->
                         <div id="roster-table-area" class="flex-1 flex flex-col overflow-hidden hidden">
-                            <div class="flex-1 overflow-y-auto border border-slate-100 rounded-xl">
+                            <div class="flex-1 overflow-y-auto overflow-x-auto border border-slate-100 rounded-xl">
                                 <table class="w-full text-left border-collapse text-xs">
                                     <thead>
                                         <tr class="bg-slate-50 border-b border-slate-100 text-slate-400">
