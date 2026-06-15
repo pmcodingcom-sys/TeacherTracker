@@ -1,0 +1,21 @@
+{
+  "short_name": "TeacherTracker",
+  "name": "Teacher Task Tracker - ระบบติดตามงานครู",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=192&h=192&fit=crop",
+      "type": "image/jpeg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=512&h=512&fit=crop",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#f8fafc",
+  "theme_color": "#6366f1",
+  "display": "standalone",
+  "orientation": "portrait"
+}

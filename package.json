@@ -1,0 +1,17 @@
+{
+  "name": "teacher-task-tracker",
+  "version": "1.0.0",
+  "description": "ระบบติดตามงานนักเรียนสำหรับครูคอมพิวเตอร์ (SPA)",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx -y http-server -p 3000",
+    "dev": "npx -y http-server -p 3000"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
