@@ -233,7 +233,7 @@
     <!-- ========================================== -->
     <!-- DESKTOP FIXED SIDEBAR                      -->
     <!-- ========================================== -->
-    <aside id="desktop-sidebar" class="hidden md:flex flex-col w-64 bg-slate-900 text-white shrink-0 border-r border-slate-800 transition-all duration-300 max-md:!hidden">
+    <aside id="desktop-sidebar" class="hidden flex-col w-64 bg-slate-900 text-white shrink-0 border-r border-slate-800 transition-all duration-300 max-md:!hidden">
         <div class="p-6 flex items-center gap-3 border-b border-slate-800">
             <div class="bg-primary-600 p-2 rounded-xl text-white">
                 <i data-lucide="graduation-cap" class="w-6 h-6"></i>
@@ -1162,7 +1162,9 @@
                 document.getElementById('mobile-avatar').innerText = avatarStr;
                 
                 // Show sidebar and bottom nav
-                document.getElementById('desktop-sidebar').classList.remove('hidden');
+                const dSidebar = document.getElementById('desktop-sidebar');
+                dSidebar.classList.remove('hidden');
+                dSidebar.classList.add('md:flex');
                 document.getElementById('mobile-nav').classList.remove('hidden');
                 
                 // Role conditional UI
@@ -1182,7 +1184,9 @@
                 }
             } else {
                 // Logged out
-                document.getElementById('desktop-sidebar').classList.add('hidden');
+                const dSidebar = document.getElementById('desktop-sidebar');
+                dSidebar.classList.add('hidden');
+                dSidebar.classList.remove('md:flex');
                 document.getElementById('mobile-nav').classList.add('hidden');
                 document.getElementById('sidebar-user-profile').classList.add('hidden');
                 
