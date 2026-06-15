@@ -12,6 +12,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="TeacherTracker">
+    <link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=192&h=192&fit=crop">
+    <link rel="shortcut icon" href="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=192&h=192&fit=crop">
 
     <!-- OneSignal Web Push SDK CDN -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
@@ -1147,6 +1149,17 @@
             
             initVoiceRecognition();
             requestPushPermission();
+
+            // PWA Service Worker Registration
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('./OneSignalSDKWorker.js').then(function(registration) {
+                        console.log('PWA ServiceWorker registered with scope:', registration.scope);
+                    }).catch(function(err) {
+                        console.error('PWA ServiceWorker registration failed:', err);
+                    });
+                });
+            }
         });
 
         // Initialize Supabase SDK Client
